@@ -9,7 +9,9 @@
         textarea { width: 100%; height: 100px; }
         button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
         button:hover { background: #0056b3; }
-        #resultado { margin-top: 20px; border: 1px solid #ddd; padding: 15px; background: #f9f9f9; }
+        #resultado { margin-top: 20px; border: 1px solid #ddd; padding: 15px; background: #f9f9f9; word-wrap: break-word; white-space: pre-wrap; overflow-wrap: break-word; }
+        #resultado h2 { margin-top: 0; }
+        #resultado p { line-height: 1.5; }
     </style>
 </head>
 <body>
@@ -128,7 +130,10 @@ Possíveis Aspectos Densos: indiferença, complexo de inferioridade, reprovaçã
             }
             let num = reduzirNumero(total);
             let resultado = document.getElementById('resultado');
-            resultado.innerHTML = `<h2>Seu Número de Expressão é: ${num}</h2><pre>${meanings[num] || 'Número não encontrado.'}</pre>`;
+            let meaningText = meanings[num] || 'Número não encontrado.';
+            // Substitui novas linhas por <br> para melhor formatação
+            meaningText = meaningText.replace(/\n/g, '<br>');
+            resultado.innerHTML = `<h2>Seu Número de Expressão é: ${num}</h2><p>${meaningText}</p>`;
         }
 
         function reduzirNumero(num) {
